@@ -5,9 +5,9 @@ import { ArrowRight } from "lucide-react";
 
 export function FinalCta() {
   return (
-    <section className="py-20">
+    <section className="py-14">
       <Container>
-        <div className="relative overflow-hidden rounded-card bg-[linear-gradient(135deg,#3b82f6_0%,#2563eb_55%,#1e40af_100%)] px-8 py-14 text-center shadow-float sm:px-12 sm:py-20">
+        <div className="relative overflow-hidden rounded-card bg-[linear-gradient(135deg,#3b82f6_0%,#2563eb_55%,#1e40af_100%)] px-8 py-14 text-center shadow-float sm:px-12 sm:py-14">
           <div className="pointer-events-none absolute -right-16 -top-16 size-64 rounded-full bg-white/20 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-20 -left-10 size-64 rounded-full bg-white/10 blur-3xl" />
 

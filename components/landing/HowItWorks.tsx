@@ -71,7 +71,7 @@ const PILLS: { label: string; c: string }[] = [
 
 export function HowItWorks() {
   return (
-    <section id="how" className="py-20">
+    <section id="how" className="py-14">
       <Container>
         <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-ink-muted">
           How it works — your growth flow

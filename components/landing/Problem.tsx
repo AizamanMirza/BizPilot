@@ -231,7 +231,7 @@ const PLUS_POS = [
 
 export function Problem() {
   return (
-    <section className="py-20">
+    <section className="py-14">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <SectionLabel>Clean and simple</SectionLabel>

@@ -34,7 +34,7 @@ const ACTIVITY: { title: string; sub: string; dim?: boolean }[] = [
 
 export function MarketingSplit() {
   return (
-    <section className="py-20">
+    <section className="py-14">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[5fr_7fr] lg:items-center lg:gap-16">
           {/* left */}

@@ -165,7 +165,7 @@ function FeatureCard({
 
 export function Features() {
   return (
-    <section id="features" className="py-20">
+    <section id="features" className="py-14">
       <Container>
         {/* header */}
         <div className="mx-auto max-w-2xl text-center">

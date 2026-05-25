@@ -25,7 +25,7 @@ function PanelCard({
 
 export function ProductPreview() {
   return (
-    <section id="product" className="py-20">
+    <section id="product" className="py-14">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <SectionLabel>The product</SectionLabel>

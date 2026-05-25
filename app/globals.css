@@ -77,3 +77,63 @@
     scrollbar-width: none;
   }
 }
+
+/* ---------- hero animations ---------- */
+
+.hero-animated-bg {
+  background-image: linear-gradient(
+    120deg,
+    #5f97d4 0%,
+    #79ace2 22%,
+    #a6ccef 46%,
+    #79ace2 70%,
+    #5f97d4 100%
+  );
+  background-size: 220% 220%;
+  animation: heroGradient 18s ease-in-out infinite;
+}
+
+@keyframes heroGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes blobDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(24px, -18px, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blobDrift 16s ease-in-out infinite;
+}
+.animate-blob-2 {
+  animation: blobDrift 22s ease-in-out infinite;
+  animation-delay: -6s;
+}
+.animate-blob-3 {
+  animation: blobDrift 19s ease-in-out infinite;
+  animation-delay: -11s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-animated-bg,
+  .animate-blob,
+  .animate-blob-2,
+  .animate-blob-3 {
+    animation: none;
+  }
+}

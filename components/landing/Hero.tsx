@@ -15,11 +15,11 @@ const NAV_LINKS = [
 export function Hero() {
   return (
     <section className="px-3 pt-3 sm:px-5 sm:pt-5">
-      <div className="relative overflow-hidden rounded-[28px] bg-[linear-gradient(180deg,#6a9fd9_0%,#8abae8_34%,#bdd9f2_66%,#dcebfa_100%)] sm:rounded-[32px]">
+      <div className="hero-animated-bg relative overflow-hidden rounded-[28px] sm:rounded-[32px]">
         {/* cloud / glow blobs */}
-        <div className="pointer-events-none absolute -left-20 top-10 size-72 rounded-full bg-white/40 blur-3xl" />
-        <div className="pointer-events-none absolute right-0 top-0 size-80 rounded-full bg-white/30 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-24 left-1/3 size-72 rounded-full bg-white/30 blur-3xl" />
+        <div className="animate-blob pointer-events-none absolute -left-20 top-10 size-72 rounded-full bg-white/40 blur-3xl" />
+        <div className="animate-blob-2 pointer-events-none absolute right-0 top-0 size-80 rounded-full bg-white/30 blur-3xl" />
+        <div className="animate-blob-3 pointer-events-none absolute bottom-24 left-1/3 size-72 rounded-full bg-white/30 blur-3xl" />
 
         {/* header */}
         <header className="relative z-10 flex items-center justify-between px-5 py-5 sm:px-8">
@@ -62,13 +62,13 @@ export function Hero() {
             {/* soft glow */}
             <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-white/30 blur-md" />
             {/* decorative sparkles */}
-            <Sparkle className="pointer-events-none absolute -right-3 -top-2 size-3 fill-white/90 text-white/90" />
-            <Sparkle className="pointer-events-none absolute -right-5 top-2 size-2 fill-white/70 text-white/70" />
-            <Sparkle className="pointer-events-none absolute -left-3 -bottom-2 size-2.5 fill-white/70 text-white/70" />
-            <span className="pointer-events-none absolute -top-1 right-2 size-1 rounded-full bg-white/80" />
+            <Sparkle className="pointer-events-none absolute -right-4 -top-2.5 size-3.5 fill-white/90 text-white/90" />
+            <Sparkle className="pointer-events-none absolute -right-6 top-3 size-2.5 fill-white/70 text-white/70" />
+            <Sparkle className="pointer-events-none absolute -left-4 -bottom-2.5 size-3 fill-white/70 text-white/70" />
+            <span className="pointer-events-none absolute -top-1.5 right-2 size-1.5 rounded-full bg-white/80" />
 
-            <span className="relative inline-flex items-center gap-2 rounded-full border border-white/45 bg-gradient-to-b from-white/35 to-white/10 px-4 py-1.5 text-[13px] font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.55)] ring-1 ring-inset ring-white/15 backdrop-blur-md">
-              <Sparkles className="size-3.5" />
+            <span className="relative inline-flex items-center gap-2.5 rounded-full border border-white/55 bg-gradient-to-b from-[#bcdaf8] to-[#4f93da] px-6 py-3 text-[15px] font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_8px_20px_-6px_rgba(37,99,235,0.55)] backdrop-blur-md">
+              <Sparkles className="size-4.5" />
               Ai Marketing
             </span>
           </div>

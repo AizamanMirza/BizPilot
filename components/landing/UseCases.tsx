@@ -21,7 +21,7 @@ const ICONS: LucideIcon[] = [
 
 export function UseCases() {
   return (
-    <section id="use-cases" className="py-20">
+    <section id="use-cases" className="py-14">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <SectionLabel>Who it’s for</SectionLabel>

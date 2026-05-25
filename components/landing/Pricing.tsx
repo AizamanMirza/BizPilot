@@ -7,7 +7,7 @@ import { Check } from "lucide-react";
 
 export function Pricing() {
   return (
-    <section id="pricing" className="py-20">
+    <section id="pricing" className="py-14">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <SectionLabel>Pricing</SectionLabel>
