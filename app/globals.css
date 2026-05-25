@@ -91,7 +91,7 @@
     #3f7fc5 100%
   );
   background-size: 320% 320%;
-  animation: heroGradient 10s ease-in-out infinite;
+  animation: heroGradient 6.5s ease-in-out infinite;
 }
 
 @keyframes heroGradient {

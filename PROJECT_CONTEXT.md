@@ -85,7 +85,7 @@ amber = small warning/action accents only; monochrome navy base. Avoid loud
 gradients elsewhere, glassmorphism overuse, childish graphics.
 
 **Hero animations** (globals.css): `.hero-animated-bg` (moving blue gradient,
-`heroGradient` 10s, bg-size 320%), `.animate-blob`/`-2`/`-3` (`blobDrift`,
+`heroGradient` **6.5s**, bg-size 320%), `.animate-blob`/`-2`/`-3` (`blobDrift`,
 drifting cloud blobs). All disabled under `prefers-reduced-motion: reduce`.
 
 ---
@@ -401,5 +401,8 @@ Render order (no separate sticky navbar — the header lives inside the Hero pan
   "+more" card, and a blue ↗ accent. More points added.
 - **v12 — Docs:** added `README.md` and this `PROJECT_CONTEXT.md`.
 
-> When you make the next change, add a `v13 —` entry here describing what changed
+- **v13 — Hero gradient speed:** `heroGradient` animation duration 10s → **6.5s**
+  (faster moving background). File: `app/globals.css`.
+
+> When you make the next change, add a `v14 —` entry here describing what changed
 > (design + copy + files touched).
