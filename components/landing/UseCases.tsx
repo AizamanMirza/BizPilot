@@ -1,223 +1,147 @@
-"use client";
-
-import { useState } from "react";
+import Link from "next/link";
 import { Container, SectionLabel } from "@/components/shared/Container";
 import { cn } from "@/lib/utils";
 import {
   Sparkles,
   Scissors,
   Coffee,
+  GraduationCap,
+  Briefcase,
   Wrench,
-  Cpu,
+  Dumbbell,
+  Store,
+  ArrowUpRight,
   type LucideIcon,
 } from "lucide-react";
 
-const BRAND = "#3b82f6";
+type Type = { area: string; Icon: LucideIcon; label: string };
 
-type UseCaseCard = {
-  Icon: LucideIcon;
-  line1: string;
-  line2: string;
-  desc: string;
-  angle: number; // direction from hub toward this card
-  color: string;
-  pos: { x: number; y: number }; // normalized card center for the connector line
-};
-
-// 0 top-left, 1 top-right, 2 bottom-left, 3 bottom-right
-const CARDS: UseCaseCard[] = [
-  {
-    Icon: Sparkles,
-    line1: "Salons &",
-    line2: "Beauty",
-    desc: "Fill your calendar with promos, reminders, and glowing review posts.",
-    angle: -45,
-    color: "#7c3aed",
-    pos: { x: 17, y: 17 },
-  },
-  {
-    Icon: Scissors,
-    line1: "Barber",
-    line2: "Shops",
-    desc: "Show off before/after cuts and push weekend bookings on autopilot.",
-    angle: 45,
-    color: "#3b82f6",
-    pos: { x: 83, y: 17 },
-  },
-  {
-    Icon: Coffee,
-    line1: "Cafes &",
-    line2: "Eateries",
-    desc: "Plan daily specials and seasonal campaigns in just a few minutes.",
-    angle: 225,
-    color: "#f59e0b",
-    pos: { x: 17, y: 83 },
-  },
-  {
-    Icon: Wrench,
-    line1: "Home",
-    line2: "Services",
-    desc: "Turn enquiries into booked jobs with fast, friendly follow-ups.",
-    angle: 135,
-    color: "#16a34a",
-    pos: { x: 83, y: 83 },
-  },
+const TYPES: Type[] = [
+  { area: "salon", Icon: Sparkles, label: "salons" },
+  { area: "barber", Icon: Scissors, label: "barbers" },
+  { area: "cafe", Icon: Coffee, label: "cafes" },
+  { area: "tuition", Icon: GraduationCap, label: "tuition centres" },
+  { area: "agency", Icon: Briefcase, label: "agencies" },
+  { area: "home", Icon: Wrench, label: "home services" },
+  { area: "fit", Icon: Dumbbell, label: "fitness studios" },
 ];
 
-function Card({
-  data,
-  active,
-  onHover,
-  onLeave,
-}: {
-  data: UseCaseCard;
-  active: boolean;
-  onHover: () => void;
-  onLeave: () => void;
-}) {
+const gridStyle: React.CSSProperties = {
+  gridTemplateColumns: "repeat(4, 1fr)",
+  gridTemplateAreas: `
+    "salon hero hero barber"
+    "cafe hero hero tuition"
+    "agency home fit desc"
+  `,
+  gridAutoRows: "minmax(132px, 1fr)",
+};
+
+function TypeCard({ type }: { type: Type }) {
   return (
     <div
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
-      className="relative z-10 flex flex-col rounded-2xl border bg-surface p-6 transition-all duration-300"
-      style={{
-        borderColor: active ? data.color : "var(--color-border-subtle)",
-        boxShadow: active
-          ? `0 18px 40px -16px ${data.color}66`
-          : "var(--shadow-card)",
-      }}
+      style={{ gridArea: type.area }}
+      className="group flex flex-col justify-between rounded-2xl border border-border-subtle bg-surface-muted/60 p-5 transition-colors duration-300 hover:bg-surface"
     >
-      <span
-        className={cn(
-          "flex size-10 items-center justify-center rounded-xl transition-colors duration-300",
-          !active && "bg-surface-muted text-ink-secondary"
-        )}
-        style={active ? { backgroundColor: data.color, color: "#fff" } : undefined}
-      >
-        <data.Icon className="size-5" />
+      <type.Icon
+        className="size-6 text-ink-secondary transition-colors group-hover:text-brand"
+        strokeWidth={1.6}
+      />
+      <span className="text-[15px] font-medium lowercase text-ink-secondary transition-colors group-hover:text-ink">
+        {type.label}
       </span>
-      <h3 className="mt-6 text-xl font-semibold leading-tight tracking-tight text-ink">
-        {data.line1}
-        <br />
-        {data.line2}
-      </h3>
-      <p className="mt-3 text-[15px] leading-relaxed text-ink-muted">
-        {data.desc}
+    </div>
+  );
+}
+
+function HeroCard({ mobile = false }: { mobile?: boolean }) {
+  return (
+    <div
+      style={mobile ? undefined : { gridArea: "hero" }}
+      className={cn(
+        "relative flex flex-col justify-between rounded-2xl border border-border-subtle bg-surface p-6 shadow-card",
+        mobile && "col-span-2"
+      )}
+    >
+      <Link
+        href="/sign-up"
+        className="absolute right-4 top-4 flex size-9 items-center justify-center rounded-full bg-brand text-white shadow-soft transition-colors hover:bg-brand-deep"
+        aria-label="Start free"
+      >
+        <ArrowUpRight className="size-4" />
+      </Link>
+      <span className="flex size-12 items-center justify-center rounded-2xl bg-brand-soft text-brand">
+        <Store className="size-6" strokeWidth={1.6} />
+      </span>
+      <div className="mt-6">
+        <p className="text-xl font-semibold tracking-tight text-ink">
+          service businesses
+        </p>
+        <p className="mt-2 max-w-xs text-sm leading-relaxed text-ink-secondary">
+          If your customers come from messages, DMs, and bookings, BizPilot was
+          built for you.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function DescCard({ mobile = false }: { mobile?: boolean }) {
+  return (
+    <div
+      style={mobile ? undefined : { gridArea: "desc" }}
+      className={cn(
+        "flex items-center rounded-2xl border border-dashed border-border-subtle bg-surface-muted/30 p-5",
+        mobile && "col-span-2"
+      )}
+    >
+      <p className="text-sm leading-relaxed text-ink-muted">
+        <span className="font-semibold text-ink-secondary">+ </span>
+        and any small business that grows through chats and bookings.
       </p>
     </div>
   );
 }
 
-function Hub({ angle, color }: { angle: number; color: string }) {
-  return (
-    <div className="relative z-10 flex size-32 items-center justify-center">
-      <div
-        className="absolute inset-0 transition-transform duration-700 ease-out"
-        style={{ transform: `rotate(${angle}deg)` }}
-      >
-        <span
-          className="absolute left-1/2 top-0 size-14 -translate-x-1/2 -translate-y-1 rounded-full opacity-40 blur-xl transition-colors duration-500"
-          style={{ backgroundColor: color }}
-        />
-        <svg viewBox="0 0 100 100" className="absolute inset-0 size-full" fill="none">
-          <circle
-            cx="50"
-            cy="50"
-            r="42"
-            stroke="var(--color-border-subtle)"
-            strokeWidth="5"
-          />
-          <path
-            d="M15.6 25.9 A42 42 0 0 1 84.4 25.9"
-            strokeWidth="5"
-            strokeLinecap="round"
-            style={{ stroke: color, transition: "stroke .4s" }}
-          />
-        </svg>
-      </div>
-      <span className="relative z-10 flex size-16 items-center justify-center rounded-full bg-surface text-ink shadow-card">
-        <Cpu className="size-8" />
-      </span>
-    </div>
-  );
-}
-
 export function UseCases() {
-  const [active, setActive] = useState<number | null>(null);
-  const angle = active === null ? 45 : CARDS[active].angle;
-  const color = active === null ? BRAND : CARDS[active].color;
-
   return (
     <section id="use-cases" className="py-14">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <SectionLabel>Who it’s for</SectionLabel>
           <h2 className="mt-5 text-balance text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            Made for local, service-based businesses
+            Made for <span className="text-brand">local businesses</span> like
+            yours.
           </h2>
           <p className="mt-4 text-pretty text-ink-secondary">
-            Salons, barbers, cafes, tuition centres, agencies, and home services
-            — if you win customers through messages and bookings, BizPilot fits.
+            From salons to home services, BizPilot adapts to how you sell — no
+            marketing team required.
           </p>
         </div>
 
-        {/* desktop constellation grid */}
-        <div className="relative mx-auto mt-14 hidden max-w-5xl gap-6 sm:grid sm:grid-cols-3">
-          {/* connector lines behind cards */}
-          <svg
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            className="pointer-events-none absolute inset-0 size-full"
-          >
-            {CARDS.map((c, i) => (
-              <line
-                key={i}
-                x1="50"
-                y1="50"
-                x2={c.pos.x}
-                y2={c.pos.y}
-                strokeLinecap="round"
-                style={{
-                  stroke: active === i ? c.color : "var(--color-border-strong)",
-                  strokeWidth: active === i ? 1.3 : 0.7,
-                  opacity: active === i ? 1 : 0.5,
-                  transition: "all .35s ease",
-                }}
-              />
-            ))}
-          </svg>
-
-          <Card data={CARDS[0]} active={active === 0} onHover={() => setActive(0)} onLeave={() => setActive(null)} />
-          <div />
-          <Card data={CARDS[1]} active={active === 1} onHover={() => setActive(1)} onLeave={() => setActive(null)} />
-
-          <div />
-          <div className="flex items-center justify-center">
-            <Hub angle={angle} color={color} />
-          </div>
-          <div />
-
-          <Card data={CARDS[2]} active={active === 2} onHover={() => setActive(2)} onLeave={() => setActive(null)} />
-          <div />
-          <Card data={CARDS[3]} active={active === 3} onHover={() => setActive(3)} onLeave={() => setActive(null)} />
+        {/* desktop bento */}
+        <div className="mx-auto mt-12 hidden max-w-4xl gap-4 md:grid" style={gridStyle}>
+          <HeroCard />
+          {TYPES.map((t) => (
+            <TypeCard key={t.area} type={t} />
+          ))}
+          <DescCard />
         </div>
 
         {/* mobile */}
-        <div className="mx-auto mt-10 max-w-md sm:hidden">
-          <div className="flex justify-center py-2">
-            <Hub angle={angle} color={color} />
-          </div>
-          <div className="mt-4 grid grid-cols-1 gap-4">
-            {CARDS.map((c, i) => (
-              <Card
-                key={c.line1}
-                data={c}
-                active={active === i}
-                onHover={() => setActive(i)}
-                onLeave={() => setActive(null)}
-              />
-            ))}
-          </div>
+        <div className="mx-auto mt-10 grid max-w-md grid-cols-2 gap-3 md:hidden">
+          <HeroCard mobile />
+          {TYPES.map((t) => (
+            <div
+              key={t.area}
+              className="group flex h-28 flex-col justify-between rounded-2xl border border-border-subtle bg-surface-muted/60 p-4"
+            >
+              <t.Icon className="size-5 text-ink-secondary" strokeWidth={1.6} />
+              <span className="text-sm font-medium lowercase text-ink-secondary">
+                {t.label}
+              </span>
+            </div>
+          ))}
+          <DescCard mobile />
         </div>
       </Container>
     </section>
