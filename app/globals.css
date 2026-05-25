@@ -82,15 +82,16 @@
 
 .hero-animated-bg {
   background-image: linear-gradient(
-    120deg,
-    #5f97d4 0%,
-    #79ace2 22%,
-    #a6ccef 46%,
-    #79ace2 70%,
-    #5f97d4 100%
+    125deg,
+    #3f7fc5 0%,
+    #5f97d4 18%,
+    #8fbce9 38%,
+    #b2d2f1 50%,
+    #6fa3da 74%,
+    #3f7fc5 100%
   );
-  background-size: 220% 220%;
-  animation: heroGradient 18s ease-in-out infinite;
+  background-size: 320% 320%;
+  animation: heroGradient 10s ease-in-out infinite;
 }
 
 @keyframes heroGradient {
@@ -110,7 +111,7 @@
     transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    transform: translate3d(24px, -18px, 0) scale(1.12);
+    transform: translate3d(46px, -34px, 0) scale(1.22);
   }
   100% {
     transform: translate3d(0, 0, 0) scale(1);
